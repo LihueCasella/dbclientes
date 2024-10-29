@@ -16,7 +16,7 @@ VALUES('$nombre_completo', '$correo', '$usuario', '$contrasena', '$confirmar_con
 
 $verificar_correo = mysqli_query($conexion, "SELECT * FROM usuarios WHERE Correo='$correo' ");
 
-if(mysqli_num_rows($verificar_correo) > 0){
+if (mysqli_num_rows($verificar_correo) > 0) {
     echo ' 
             <script>
                 alert("El correo electronico que intentas usar ya se encuentra registrado, intenta con otro diferente");
@@ -25,47 +25,38 @@ if(mysqli_num_rows($verificar_correo) > 0){
     ';
     exit();
     mysqli_close($conexion);
-
 }
 
 
 $verificar_usuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE usuario='$usuario' ");
 
-if(mysqli_num_rows($verificar_usuario) > 0){
+if (mysqli_num_rows($verificar_usuario) > 0) {
     echo ' 
             <script>
                 alert("El nombre de usuario ya se encuentra registrado, intenta con otro diferente");
                 window.location = "../index.php";
             </script>
     ';
-  exit();
-  mysqli_close($conexion);
-  
+    exit();
+    mysqli_close($conexion);
 }
 
 $ejecutar = mysqli_query($conexion, $query);
-if($ejecutar){
+if ($ejecutar) {
     echo '
             <script>
                 alert("Registro con exito");
                 window.location = "../index.php";
             </script>
         ';
-        
-}else{
-    echo'
+} else {
+    echo '
     <script>
     alert("El usuario no ha podido registrarse intentelo nuevamente");
     window.location = "../index.php";
 </script>
 
   ';
-
 }
 
 mysqli_close($conexion);
-
-
-
-
-?>

@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['usuario'])){
-        echo'
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    echo '
     <script> 
         alert("Inicia Sesión para poder aceder a la pagina")
         window.location = "index.php";
@@ -9,7 +9,7 @@
     ';
     session_destroy();
     die();
-    }
+}
 session_destroy();
 
 
@@ -18,12 +18,14 @@ session_destroy();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Clientes</title>
     <link rel="stylesheet" href="dashboard/assets/estilo.css">
 </head>
+
 <body>
     <div class="nav">
         <ul>
@@ -113,4 +115,5 @@ session_destroy();
 
     <script src="dashboard/app.js"></script>
 </body>
+
 </html>
