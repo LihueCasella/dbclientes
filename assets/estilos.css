@@ -132,21 +132,25 @@ main {
     main {
         margin-top: 50px;
     }
+
     .caja__deatras {
         max-width: 350px;
         height: 300px;
         flex-direction: column;
         margin: auto;
     }
+
     .caja__deatras div {
         margin: 0px;
         position: absolute;
     }
+
     .contenedor__login-register {
         top: -10px;
         left: -5px;
         margin: auto;
     }
+
     .contenedor__login-register form {
         position: relative;
     }
@@ -161,23 +165,26 @@ main {
 
 .password-container input {
     flex: 1;
-    padding-right: 50px;  /* Espacio para el botón */
+    padding-right: 50px;
+    /* Espacio para el botón */
 }
 
 .password-container button {
     position: absolute;
     right: -24px;
     top: -30px;
-    background: transparent !important;  /* Asegura que no haya fondo */
-    border: none !important;  /* Asegura que no haya borde */
+    background: transparent !important;
+    /* Asegura que no haya fondo */
+    border: none !important;
+    /* Asegura que no haya borde */
     cursor: pointer;
     font-size: 1rem;
-    padding: 0;  /* Quitar cualquier padding */
+    padding: 0;
+    /* Quitar cualquier padding */
 }
 
 .password-container button img {
-    width: 40px;  /* Ajusta el tamaño de la imagen según sea necesario */
+    width: 40px;
+    /* Ajusta el tamaño de la imagen según sea necesario */
     height: auto;
 }
-
-

@@ -23,7 +23,7 @@ function register() {
     caja__atraslogin.style.opacity = "1";
 }
 
-document.querySelector('.formulario__registro').addEventListener('submit', function(event) {
+document.querySelector('.formulario__registro').addEventListener('submit', function (event) {
     const contraseña = document.getElementById('contrasena').value;
     const confirmarContraseña = document.getElementById('confirmar_contrasena').value;
 
@@ -47,15 +47,15 @@ function togglePassword(id, iconId) {
     icon.src = type === 'password' ? 'assets/botones/boton apagado.png' : 'assets/botones/boton encendidop.png';
 }
 
-document.getElementById('toggleLoginPassword').addEventListener('click', function() {
+document.getElementById('toggleLoginPassword').addEventListener('click', function () {
     togglePassword('login_contrasena', 'loginPasswordIcon');
 });
 
-document.getElementById('toggleRegisterPassword').addEventListener('click', function() {
+document.getElementById('toggleRegisterPassword').addEventListener('click', function () {
     togglePassword('contrasena', 'registerPasswordIcon');
 });
 
-document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
     togglePassword('confirmar_contrasena', 'confirmPasswordIcon');
 });
 
