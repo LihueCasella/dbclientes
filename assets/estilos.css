@@ -34,7 +34,7 @@ main {
     display: flex;
     justify-content: center;
     backdrop-filter: blur(12px);
-    background-color: #7b00ff80;
+    background-color: #1205fd80;
 }
 
 .caja__deatras div {
@@ -69,7 +69,7 @@ main {
 
 .caja__deatras button:hover {
     background: white;
-    color: #7b00ff80;
+    color: #1205fd80;
 }
 
 /*formularios*/
@@ -117,7 +117,7 @@ main {
     margin-top: 40px;
     border: none;
     font-size: 14px;
-    background: #7b00ff80;
+    background: #1205fd80;
     color: white;
     cursor: pointer;
     outline: none;
