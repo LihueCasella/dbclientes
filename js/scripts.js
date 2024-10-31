@@ -38,6 +38,30 @@ document.querySelector('.formulario__registro').addEventListener('submit', funct
     }
 });
 
+// Función para mostrar/ocultar contraseña y cambiar la imagen del botón
+function togglePassword(id, iconId) {
+    const passwordField = document.getElementById(id);
+    const icon = document.getElementById(iconId);
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    icon.src = type === 'password' ? 'assets/botones/boton apagado.png' : 'assets/botones/boton encendidop.png';
+}
+
+document.getElementById('toggleLoginPassword').addEventListener('click', function() {
+    togglePassword('login_contrasena', 'loginPasswordIcon');
+});
+
+document.getElementById('toggleRegisterPassword').addEventListener('click', function() {
+    togglePassword('contrasena', 'registerPasswordIcon');
+});
+
+document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+    togglePassword('confirmar_contrasena', 'confirmPasswordIcon');
+});
+
+
+
+
 
 
 
