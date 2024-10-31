@@ -57,11 +57,11 @@ if (isset($_SESSION['usuario'])) {
                 <form action="php/registro_usuarios.php" method="POST" class="formulario__registro">
 
                     <h2>Regístrarse</h2>
-                    <input type="text" placeholder="Nombre Completo" name="nombre_completo">
-                    <input type="text" placeholder="Correo Electronico" name="correo">
-                    <input type="text" placeholder="Usuario" name="usuario">
-                    <input type="password" placeholder="Contraseña" name="contrasena">
-                    <input type="password" placeholder="Confirmar Contraseña" name="confirmar_contrasena">
+                    <input type="text" placeholder="Nombre Completo" name="nombre_completo"required>
+                    <input type="text" placeholder="Correo Electronico" name="correo" required>
+                    <input type="text" placeholder="Usuario" name="usuario" required>
+                    <input type="password" placeholder="Contraseña" name="contrasena" required>
+                    <input type="password" placeholder="Confirmar Contraseña" name="confirmar_contrasena" required>
                     <button>Regístrarse</button>
                 </form>
             </div>
