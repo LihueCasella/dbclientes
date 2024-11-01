@@ -7,6 +7,37 @@ $usuario = $_POST['usuario'];
 $contrasena = $_POST['contrasena'];
 $confirmar_contrasena = $_POST['confirmar_contrasena'];
 
+
+//register fuction
+$query = "INSERT IN TO usuarios(nombre_completo, Correo, usuario, contrasena, confirmarcontrasena)
+            VALUES('$nombre_completo','$correo', '$usuario', '$contrasena', '$confirmar_contrasena')";
+$ejecutar = mysqli_query($conexion, $query);
+
+if($ejecutar){
+  echo'
+  <script>
+  alert("Usuario Registrado Correctamente");
+  window.location = "../index.php";
+  </script>
+  ';
+}else{
+  echo '
+<script>
+    alert("Intentelo nuevamente, Usuario no registrado");
+    window.location = "../index.php";
+</script>
+  ';
+}
+mysqli_close($conexion);
+
+
+
+
+
+
+
+
+
 // Validar contraseñas
 if (strlen($contrasena) < 8 || !preg_match('/[A-Z]/', $contrasena) || !preg_match('/\d/', $contrasena)) {
     echo '<script>
