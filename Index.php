@@ -14,16 +14,15 @@ if (isset($_SESSION['usuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/estilos.css">
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous" />
+
     <title>Logeo y Registro - Base de datos</title>
 </head>
 
@@ -37,8 +36,8 @@ if (isset($_SESSION['usuario'])) {
                     <h3>
                         ¿ya tienes cuenta?
                         <p>Inicia sesión para entrar en La base de datos</p>
-                        <button id="btn__iniciar-sesion"data-bs-toggle="tooltip"
-                        title="Ver contraseña"/> Iniciar sesión </button>
+                        <button id="btn__iniciar-sesion" data-bs-toggle="tooltip"
+                            title="Ver contraseña" /> Iniciar sesión </button>
                     </h3>
                 </div>
                 <!--caja de atras de registro-->
@@ -47,7 +46,7 @@ if (isset($_SESSION['usuario'])) {
                         ¿Aún no tienes cuenta?
                         <p>Registrate para poder iniciar sesión</p>
                         <button id="btn__registro" data-bs-toggle="tooltip"
-                        title="Ver contraseña"/>registrarse</button>
+                            title="Ver contraseña" />registrarse</button>
                     </h3>
                 </div>
             </div>
@@ -59,8 +58,8 @@ if (isset($_SESSION['usuario'])) {
                     <div class="password-container">
                         <input type="password" placeholder="Contraseña" name="contrasena" id="login_contrasena" required>
                         <button type="button" id="toggleLoginPassword">
-                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="loginPasswordIcon"data-bs-toggle="tooltip"
-                            title="Ver contraseña"/>
+                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="loginPasswordIcon" data-bs-toggle="tooltip"
+                                title="Ver contraseña" />
                         </button>
                     </div>
                     <button type="submit">Ingresar</button>
@@ -74,15 +73,15 @@ if (isset($_SESSION['usuario'])) {
                     <div class="password-container">
                         <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" required>
                         <button type="button" id="toggleRegisterPassword">
-                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="registerPasswordIcon"data-bs-toggle="tooltip"
-                            title="Ver contraseña"/>
+                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="registerPasswordIcon" data-bs-toggle="tooltip"
+                                title="Ver contraseña" />
                         </button>
                     </div>
                     <div class="password-container">
                         <input type="password" placeholder="Confirmar Contraseña" name="confirmar_contrasena" id="confirmar_contrasena" required>
                         <button type="button" id="toggleConfirmPassword">
-                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="confirmPasswordIcon"data-bs-toggle="tooltip"
-                            title="Ver contraseña"/> 
+                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="confirmPasswordIcon" data-bs-toggle="tooltip"
+                                title="Ver contraseña" />
                         </button>
                     </div>
                     <button type="submit">Regístrarse</button>
