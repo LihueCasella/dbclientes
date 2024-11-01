@@ -44,7 +44,7 @@ function togglePassword(id, iconId) {
     const icon = document.getElementById(iconId);
     const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordField.setAttribute('type', type);
-    icon.src = type === 'password' ? 'assets/botones/boton apagado.png' : 'assets/botones/boton encendidop.png';
+    icon.src = type === 'password' ? 'assets/botones/ojo2.png' : 'assets/botones/ojo1.png';
 }
 
 document.getElementById('toggleLoginPassword').addEventListener('click', function () {

@@ -73,14 +73,14 @@ if (isset($_SESSION['usuario'])) {
                     <div class="password-container">
                         <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" required>
                         <button type="button" id="toggleRegisterPassword">
-                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="registerPasswordIcon" data-bs-toggle="tooltip"
+                            <img src="assets/botones/ojo2.png" alt="Mostrar Contraseña" id="registerPasswordIcon" data-bs-toggle="tooltip"
                                 title="Ver contraseña" />
                         </button>
                     </div>
                     <div class="password-container">
                         <input type="password" placeholder="Confirmar Contraseña" name="confirmar_contrasena" id="confirmar_contrasena" required>
                         <button type="button" id="toggleConfirmPassword">
-                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="confirmPasswordIcon" data-bs-toggle="tooltip"
+                            <img src="assets/botones/ojo2.png" alt="Mostrar Contraseña" id="confirmPasswordIcon" data-bs-toggle="tooltip"
                                 title="Ver contraseña" />
                         </button>
                     </div>
