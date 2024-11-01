@@ -184,7 +184,7 @@ main {
 }
 
 .password-container button img {
-    width: 15px;
+    width: 30px;
     /* Ajusta el tamaño de la imagen según sea necesario */
     height: auto;
 }
