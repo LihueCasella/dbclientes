@@ -75,20 +75,4 @@ if (mysqli_num_rows($verificar_usuario) > 0) {
           </script>';
     exit();
 }
-
-$ejecutar = mysqli_query($conexion, $query);
-
-if ($ejecutar) {
-    echo '<script>
-            alert("Registro con éxito");
-            window.location = "../index.php";
-          </script>';
-} else {
-    echo '<script>
-            alert("El usuario no ha podido registrarse, inténtelo nuevamente");
-            window.location = "../index.php";
-          </script>';
-}
-
-mysqli_close($conexion);
 ?>
