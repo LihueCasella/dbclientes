@@ -9,7 +9,7 @@ $confirmar_contrasena = $_POST['confirmar_contrasena'];
 
 
 //register fuction
-$query = "INSERT IN TO usuarios(nombre_completo, Correo, usuario, contrasena, confirmarcontrasena)
+$query = "INSERT INTO usuarios(nombre_completo, Correo, usuario, contrasena, comfirmarcontrasena)
             VALUES('$nombre_completo','$correo', '$usuario', '$contrasena', '$confirmar_contrasena')";
 $ejecutar = mysqli_query($conexion, $query);
 
