@@ -58,7 +58,7 @@ if (isset($_SESSION['usuario'])) {
                     <div class="password-container">
                         <input type="password" placeholder="Contraseña" name="contrasena" id="login_contrasena" required>
                         <button type="button" id="toggleLoginPassword">
-                            <img src="assets/botones/boton apagado.png" alt="Mostrar Contraseña" id="loginPasswordIcon" data-bs-toggle="tooltip"
+                            <img src="assets/botones/ojo2.png" alt="Mostrar Contraseña" id="loginPasswordIcon" data-bs-toggle="tooltip"
                                 title="Ver contraseña" />
                         </button>
                     </div>
