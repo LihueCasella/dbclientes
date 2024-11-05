@@ -172,7 +172,7 @@ main {
 .password-container button {
     position: absolute;
     right: -24px;
-    top: -30px;
+    top: -21px;
     background: transparent !important;
     /* Asegura que no haya fondo */
     border: none !important;
@@ -184,7 +184,7 @@ main {
 }
 
 .password-container button img {
-    width: 30px;
+    width: 29px;
     /* Ajusta el tamaño de la imagen según sea necesario */
     height: auto;
 }
