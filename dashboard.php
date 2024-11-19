@@ -18,112 +18,77 @@ session_destroy();
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Clientes</title>
-    <link rel="stylesheet" href="dashboard/assets/estilo.css">
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous" />
-
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dashboard/assets/estilo.css"> <!-- Archivo CSS personalizado -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluir Chart.js -->
 </head>
-
 <body>
-    <div class="nav">
-        <ul>
-            <li><a href="#" id="cargar-clientes">Cargar Clientes</a></li>
-            <li><a href="#" id="ver-deudas">Ver Deudas</a></li>
-            <li><a href="php/cerrar_sesion.php">Cerrar Sesión</a></li>
-        </ul>
-    </div>
-    <div class="main-content">
-        <h1>Dashboard de Clientes</h1>
-        <div id="lista-clientes">
-            <h2>Lista de Clientes</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Límite de Crédito</th>
-                        <th>Deuda Actual</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="clientes-table-body">
-                    <!-- Filas de clientes irán aquí -->
-                </tbody>
-            </table>
+    <!-- Sidebar -->
+    <div class="d-flex">
+        <nav class="sidebar bg-dark text-white p-3">
+            <h4>Dashboard</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a href="index.html" class="nav-link text-white">Estadísticas</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-white">Usuarios</a></li>
+                <li class="nav-item"><a href="cargar_usuarios." class="nav-link text-white">Cargar Usuarios</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content -->
+        <div class="content p-4">
+            <div class="container-fluid">
+                <!-- Tarjetas de estadísticas con gráficos -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Usuarios Activos</h5>
+                                <canvas id="activeUsersChart" height="200"></canvas> <!-- Gráfico de usuarios activos -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Ventas</h5>
+                                <canvas id="salesChart" height="200"></canvas> <!-- Gráfico de ventas -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Ganancias</h5>
+                                <canvas id="profitsChart" height="200"></canvas> <!-- Gráfico de ganancias -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tabla de ejemplo -->
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php include 'data.php'; ?> <!-- Incluye datos dinámicos de PHP -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="dashboard/scripts.js"></script>
 
-    <!-- Ventana flotante para Cargar Clientes -->
-    <div class="modal" id="modal-cargar-clientes">
-        <div class="modal-content">
-            <span class="close" id="close-cargar-clientes">&times;</span>
-            <h2>Agregar Cliente</h2>
-            <form id="form-cargar-clientes">
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="email" name="email" placeholder="Correo" required>
-                <input type="text" name="telefono" placeholder="Teléfono">
-                <input type="text" name="direccion" placeholder="Dirección">
-                <input type="number" name="limite_credito" placeholder="Límite de Crédito" max="300000" required>
-                <button type="submit">Registrar</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Ventana flotante para Editar Clientes -->
-    <div class="modal" id="modal-editar-clientes">
-        <div class="modal-content">
-            <span class="close" id="close-editar-clientes">&times;</span>
-            <h2>Editar Cliente</h2>
-            <form id="form-editar-clientes">
-                <input type="hidden" name="id" id="edit-id">
-                <input type="text" name="nombre" id="edit-nombre" placeholder="Nombre" required>
-                <input type="email" name="email" id="edit-email" placeholder="Correo" required>
-                <input type="text" name="telefono" id="edit-telefono" placeholder="Teléfono">
-                <input type="text" name="direccion" id="edit-direccion" placeholder="Dirección">
-                <input type="number" name="limite_credito" id="edit-limite_credito" placeholder="Límite de Crédito" max="300000" required>
-                <button type="submit">Guardar Cambios</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Ventana flotante para Ver Deudas -->
-    <div class="modal" id="modal-ver-deudas">
-        <div class="modal-content">
-            <span class="close" id="close-ver-deudas">&times;</span>
-            <h2>Deudas de Clientes</h2>
-            <table id="deudas-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Deuda Actual</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="deudas-table-body">
-                    <!-- Filas de deudas irán aquí -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <script src="dashboard/app.js"></script>
 </body>
-
 </html>
