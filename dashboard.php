@@ -81,7 +81,7 @@ session_destroy();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php include 'data.php'; ?> <!-- Incluye datos dinámicos de PHP -->
+                           
                         </tbody>
                     </table>
                 </div>
