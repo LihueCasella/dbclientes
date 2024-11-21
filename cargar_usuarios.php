@@ -23,7 +23,7 @@
         <div class="content p-4">
             <div class="container-fluid">
                 <h3>Cargar Usuarios</h3>
-                <form action="procesar_usuario.php" method="post">
+                <form action="procesar_usuario.php" method="POST">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>

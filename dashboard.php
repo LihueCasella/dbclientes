@@ -34,7 +34,7 @@ session_destroy();
             <ul class="nav flex-column">
                 <li class="nav-item"><a href="index.html" class="nav-link text-white">Estadísticas</a></li>
                 <li class="nav-item"><a href="#" class="nav-link text-white">Usuarios</a></li>
-                <li class="nav-item"><a href="cargar_usuarios." class="nav-link text-white">Cargar Usuarios</a></li>
+                <li class="nav-item"><a href="cargar_usuarios.php" class="nav-link text-white">Cargar Usuarios</a></li>
             </ul>
         </nav>
         
