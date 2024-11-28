@@ -23,7 +23,7 @@
         <div class="content p-4">
             <div class="container-fluid">
                 <h3>Cargar Usuarios</h3>
-                <form action="procesar_usuario.php" method="POST">
+                <form action="php/procesar_usuarios.php" method="POST">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -52,7 +52,7 @@
                         <input type="checkbox" class="form-check-input" id="cuentaCorriente" name="cuentaCorriente">
                         <label class="form-check-label" for="cuentaCorriente">Activar Cuenta Corriente</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+                    <button type="submit" id="agregar" name="agregar"  class="btn btn-primary">Agregar Usuario</button>
                 </form>
             </div>
         </div>

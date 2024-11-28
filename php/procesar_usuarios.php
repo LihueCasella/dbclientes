@@ -1,33 +1,38 @@
 <?php
-include 'conexion_be.php';
 
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$dni = $_POST['dni'];
-$correo = $_POST['correo'];
-$telefono = $_POST['telefono'];
-$domicilio = $_POST['domicilio'];
+$servidor = "localhost";
+$usuario = "root";
+$contrasena = "";
+$basededatos = "login_register_db";
 
+$con = mysqli_connect($servidor, $usuario, $contrasena, $basededatos);
 
-//register fuction
-$query = "INSERT INTO clientes(nombre, apellido, dni, correo, telefono, domicilio)
-            VALUES('$nombre', '$apellido', '$dni', '$correo', '$telefono', '$domicilio')";
-$ejecutar = mysqli_query($conexion, $query);
+if (isset($_POST["agregar"])) {
+  $nombre = $_POST["nombre"];
+  $apellido = $_POST["apellido"];
+  $dni = $_POST["dni"];
+  $email = $_POST["email"];
+  $telefono = $_POST["telefono"];
+  $domicilio = $_POST["domicilio"];
 
-if($ejecutar){
-  echo'
-  <script>
-  alert("Cliente cargado con exito");
-  window.location = "../cargar_usuarios.php";
-  </script>
-  ';
-}else{
-  echo '
-<script>
-    alert("fallo al cargar el cliente, intentelo nuevamente");
-    window.location = "../cargar_usuarios.php";
-</script>
-  ';
+  //agregar la lógica para insertar estos datos en la base de datos o cualquier otra operación
+
+  $insertarDatos = "INSERT INTO clientes VALUES ('$nombre','$apellido','$dni','$email','$telefono','$domicilio')";
+  $ejecutarInsertar = mysqli_query($con, $insertarDatos);
+
+  if ($ejecutarInsertar) {
+    echo '
+      <script>
+      alert("Cliente Cargado Correctamente");
+      window.location = "../cargar_usuarios.php";
+      </script>
+      ';
+  } else {
+    echo '
+    <script>
+        alert("Intentelo nuevamente,La carga del Cliente no ha sido Posible");
+        window.location = "../cargar_usuarios.php";
+    </script>
+      ';
+  }
 }
-mysqli_close($conexion);
-?>

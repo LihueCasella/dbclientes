@@ -73,5 +73,10 @@ body {
     width: calc(100% - 250px); /* Ajuste del contenido */
 }
 
+.icusuario {
+
+    width: 10px;
+    height: 10px;
+}
 
 

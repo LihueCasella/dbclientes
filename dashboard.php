@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['usuario'])) {
     echo '
     <script> 
-        alert("Inicia Sesión para poder aceder a la pagina")
+        alert("Inicia Sesión para poder acceder a la página")
         window.location = "index.php";
     </script>
     ';
@@ -11,10 +11,7 @@ if (!isset($_SESSION['usuario'])) {
     die();
 }
 session_destroy();
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -25,6 +22,8 @@ session_destroy();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="dashboard/assets/estilo.css"> <!-- Archivo CSS personalizado -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluir Chart.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!-- Incluir jQuery -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Incluir Bootstrap JS -->
 </head>
 <body>
     <!-- Sidebar -->
@@ -32,9 +31,9 @@ session_destroy();
         <nav class="sidebar bg-dark text-white p-3">
             <h4>Dashboard</h4>
             <ul class="nav flex-column">
-                <li class="nav-item"><a href="index.html" class="nav-link text-white">Estadísticas</a></li>
+                <li class="nav-item"><a href="dashboard.php" class="nav-link text-white">Estadísticas</a></li>
                 <li class="nav-item"><a href="#" class="nav-link text-white">Usuarios</a></li>
-                <li class="nav-item"><a href="cargar_usuarios.php" class="nav-link text-white">Cargar Usuarios</a></li>
+                <li class="nav-item"><img src="assets/iconos/navbar/icono usuario.png" id="icusuario" alt=""><a href="cargar_usuarios.php" class="nav-link text-white">Cargar Usuarios</a></li>
             </ul>
         </nav>
         
@@ -69,26 +68,137 @@ session_destroy();
                     </div>
                 </div>
                 
-                <!-- Tabla de ejemplo -->
+                <!-- Tabla de Clientes -->
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>DNI</th>
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
-                        <tbody>
-                           
+                        <tbody id="clientesTable">
+                            <!-- Aquí se cargarán los clientes desde la base de datos -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <script src="dashboard/scripts.js"></script>
 
+    <!-- Modal para Editar Cliente -->
+    <div class="modal fade" id="editarClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarClienteForm">
+                        <input type="hidden" id="editDni">
+                        <div class="form-group">
+                            <label for="editNombre">Nombre:</label>
+                            <input type="text" class="form-control" id="editNombre" name="editNombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="editEmail" name="editEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTelefono">Número de Teléfono:</label>
+                            <input type="text" class="form-control" id="editTelefono" name="editTelefono" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDomicilio">Domicilio:</label>
+                            <input type="text" class="form-control" id="editDomicilio" name="editDomicilio" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // Función para cargar clientes desde la base de datos
+            function cargarClientes() {
+                $.ajax({
+                    url: 'php/obtener_usuarios.php',
+                    method: 'GET',
+                    success: function(response) {
+                        $('#clientesTable').html(response);
+                    }
+                });
+            }
+
+            // Cargar clientes al cargar la página
+            cargarClientes();
+
+            // Editar Cliente
+            $('#clientesTable').on('click', '.btnEditar', function() {
+                var dni = $(this).data('dni');
+                var nombre = $(this).data('nombre');
+                var email = $(this).data('email');
+                var telefono = $(this).data('telefono');
+                var domicilio = $(this).data('domicilio');
+
+                $('#editDni').val(dni);
+                $('#editNombre').val(nombre);
+                $('#editEmail').val(email);
+                $('#editTelefono').val(telefono);
+                $('#editDomicilio').val(domicilio);
+
+                $('#editarClienteModal').modal('show');
+            });
+
+            // Guardar Cambios del Cliente
+            $('#editarClienteForm').submit(function(e) {
+                e.preventDefault();
+                var dni = $('#editDni').val();
+                var nombre = $('#editNombre').val();
+                var email = $('#editEmail').val();
+                var telefono = $('#editTelefono').val();
+                var domicilio = $('#editDomicilio').val();
+
+                $.ajax({
+                    url: 'php/actualizar_usuario.php',
+                    method: 'POST',
+                    data: {
+                        dni: dni,
+                        nombre: nombre,
+                        email: email,
+                        telefono: telefono,
+                        domicilio: domicilio
+                    },
+                    success: function(response) {
+                        $('#editarClienteModal').modal('hide');
+                        cargarClientes();
+                    }
+                });
+            });
+
+            // Eliminar Cliente
+            $('#clientesTable').on('click', '.btnEliminar', function() {
+                if (confirm('¿Seguro que deseas eliminar este cliente?')) {
+                    var dni = $(this).data('dni');
+
+                    $.ajax({
+                        url: 'php/eliminar_usuarios.php',
+                        method: 'POST',
+                        data: { dni: dni },
+                        success: function(response) {
+                            cargarClientes();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
