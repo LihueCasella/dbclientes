@@ -6,6 +6,8 @@
     <title>Cargar Usuarios</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="dashboard/assets/estilo.css"> <!-- Archivo CSS personalizado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 <body>
     <!-- Sidebar -->
@@ -13,9 +15,9 @@
         <nav class="sidebar bg-dark text-white p-3">
             <h4>Dashboard</h4>
             <ul class="nav flex-column">
-                <li class="nav-item"><a href="dashboard.php" class="nav-link text-white">Inicio</a></li>
-                <li class="nav-item"><a href="dashboard.php" class="nav-link text-white">Estadísticas</a></li>
-                <li class="nav-item"><a href="cargar_usuarios.html" class="nav-link text-white">Cargar Usuarios</a></li>
+            <li class="nav-item"><a href="dashboard.php" class="nav-link text-white"><i class="fas fa-home" style="margin-right: 3px;"></i> Inicio</a></li>
+            <li class="nav-item"><a href="clientes.php" class="nav-link text-white"><i class="fas fa-users" style="margin-right: 3px;"></i> Clientes</a></li>
+
             </ul>
         </nav>
         

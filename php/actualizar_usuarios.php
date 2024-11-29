@@ -14,11 +14,11 @@ if (!$conexion) {
 if (isset($_POST["dni"])) {
     $dni = $_POST["dni"];
     $nombre = $_POST["nombre"];
-    $email = $_POST["correo"];
+    $correo = $_POST["correo"];
     $telefono = $_POST["telefono"];
     $domicilio = $_POST["domicilio"];
 
-    $query = "UPDATE clientes SET nombre = '$nombre', email = '$correo', telefono = '$telefono', domicilio = '$domicilio' WHERE dni = '$dni'";
+    $query = "UPDATE clientes SET nombre = '$nombre', correo = '$correo', telefono = '$telefono', domicilio = '$domicilio' WHERE dni = '$dni'";
 
     if (mysqli_query($conexion, $query)) {
         echo "Cliente actualizado correctamente.";

@@ -7,10 +7,8 @@ if (!isset($_SESSION['usuario'])) {
         window.location = "index.php";
     </script>
     ';
-    session_destroy();
     die();
 }
-session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +19,7 @@ session_destroy();
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="dashboard/assets/estilo.css"> <!-- Archivo CSS personalizado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluir Chart.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!-- Incluir jQuery -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Incluir Bootstrap JS -->
@@ -31,44 +30,19 @@ session_destroy();
         <nav class="sidebar bg-dark text-white p-3">
             <h4>Dashboard</h4>
             <ul class="nav flex-column">
-                <li class="nav-item"><a href="dashboard.php" class="nav-link text-white">Estadísticas</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white">Usuarios</a></li>
-                <li class="nav-item"><a href="cargar_usuarios.php" class="nav-link text-white">Cargar Usuarios</a></li>
+            <li class="nav-item"><a href="clientes.php" class="nav-link text-white"><i class="fas fa-users" style="margin-right: 3px;"></i> Clientes</a></li>
+            <li class="nav-item"><a href="cargar_usuarios.php" class="nav-link text-white"><i class="fas fa-solid fa-user-plus" style="margin-right: 3px;"></i> Cargar Clientes</a></li>
+            <!-- Botón de Cerrar Sesión -->
+            <li class="nav-item mt-auto"><a href="php/cerrar_sesion.php" class="nav-link text-white"><i class="fas fa-sign-out-alt" style="margin-right: 3px;"></i> Cerrar Sesión</a></li>
+
             </ul>
         </nav>
         
         <!-- Main Content -->
         <div class="content p-4">
+            
             <div class="container-fluid">
-                <!-- Tarjetas de estadísticas con gráficos -->
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h5 class="card-title">Usuarios Activos</h5>
-                                <canvas id="activeUsersChart" height="200"></canvas> <!-- Gráfico de usuarios activos -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h5 class="card-title">Ventas</h5>
-                                <canvas id="salesChart" height="200"></canvas> <!-- Gráfico de ventas -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h5 class="card-title">Ganancias</h5>
-                                <canvas id="profitsChart" height="200"></canvas> <!-- Gráfico de ganancias -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tabla de Clientes -->
+                <!-- Tabla de Usuarios -->
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -79,8 +53,8 @@ session_destroy();
                                 <th>Acción</th>
                             </tr>
                         </thead>
-                        <tbody id="clientesTable">
-                            <!-- Aquí se cargarán los clientes desde la base de datos -->
+                        <tbody id="usuariosTable">
+                            <!-- Aquí se cargarán los usuarios desde la base de datos -->
                         </tbody>
                     </table>
                 </div>
@@ -88,26 +62,26 @@ session_destroy();
         </div>
     </div>
 
-    <!-- Modal para Editar Cliente -->
-    <div class="modal fade" id="editarClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal para Editar Usuario -->
+    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="editarClienteForm">
+                    <form id="editarUsuarioForm">
                         <input type="hidden" id="editDni">
                         <div class="form-group">
                             <label for="editNombre">Nombre:</label>
                             <input type="text" class="form-control" id="editNombre" name="editNombre" required>
                         </div>
                         <div class="form-group">
-                            <label for="editEmail">Correo Electrónico:</label>
-                            <input type="email" class="form-control" id="editEmail" name="editEmail" required>
+                            <label for="editCorreo">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="editCorreo" name="editCorreo" required>
                         </div>
                         <div class="form-group">
                             <label for="editTelefono">Número de Teléfono:</label>
@@ -126,66 +100,72 @@ session_destroy();
 
     <script>
         $(document).ready(function(){
-            // Función para cargar clientes desde la base de datos
-            function cargarClientes() {
+            // Función para cargar usuarios desde la base de datos
+            function cargarUsuarios() {
                 $.ajax({
                     url: 'php/obtener_usuarios.php',
                     method: 'GET',
                     success: function(response) {
-                        $('#clientesTable').html(response);
+                        $('#usuariosTable').html(response);
                     }
                 });
             }
 
-            // Cargar clientes al cargar la página
-            cargarClientes();
+            // Cargar usuarios al cargar la página
+            cargarUsuarios();
 
-            // Editar Cliente
-            $('#clientesTable').on('click', '.btnEditar', function() {
+            // Editar Usuario
+            $('#usuariosTable').on('click', '.btnEditar', function() {
                 var dni = $(this).data('dni');
                 var nombre = $(this).data('nombre');
-                var email = $(this).data('email');
+                var correo = $(this).data('correo');
                 var telefono = $(this).data('telefono');
                 var domicilio = $(this).data('domicilio');
 
                 $('#editDni').val(dni);
                 $('#editNombre').val(nombre);
-                $('#editEmail').val(email);
+                $('#editCorreo').val(correo);
                 $('#editTelefono').val(telefono);
                 $('#editDomicilio').val(domicilio);
 
-                $('#editarClienteModal').modal('show');
+                $('#editarUsuarioModal').modal('show');
             });
 
-            // Guardar Cambios del Cliente
-            $('#editarClienteForm').submit(function(e) {
+            // Guardar Cambios del Usuario
+            $('#editarUsuarioForm').submit(function(e) {
                 e.preventDefault();
                 var dni = $('#editDni').val();
                 var nombre = $('#editNombre').val();
-                var email = $('#editEmail').val();
+                var correo = $('#editCorreo').val();
                 var telefono = $('#editTelefono').val();
                 var domicilio = $('#editDomicilio').val();
 
+                console.log("Datos enviados:", {dni, nombre, correo, telefono, domicilio}); // Añadir esta línea para verificar datos
+
                 $.ajax({
-                    url: 'php/actualizar_usuario.php',
+                    url: 'php/actualizar_usuarios.php',
                     method: 'POST',
                     data: {
                         dni: dni,
                         nombre: nombre,
-                        email: email,
+                        correo: correo,
                         telefono: telefono,
                         domicilio: domicilio
                     },
                     success: function(response) {
-                        $('#editarClienteModal').modal('hide');
-                        cargarClientes();
+                        if(response == 'Cliente actualizado correctamente.') {
+                            $('#editarUsuarioModal').modal('hide');
+                            cargarUsuarios();
+                        } else {
+                            alert('Error al actualizar el usuario: ' + response);
+                        }
                     }
                 });
             });
 
-            // Eliminar Cliente
-            $('#clientesTable').on('click', '.btnEliminar', function() {
-                if (confirm('¿Seguro que deseas eliminar este cliente?')) {
+            // Eliminar Usuario
+            $('#usuariosTable').on('click', '.btnEliminar', function() {
+                if (confirm('¿Seguro que deseas eliminar este usuario?')) {
                     var dni = $(this).data('dni');
 
                     $.ajax({
@@ -193,12 +173,20 @@ session_destroy();
                         method: 'POST',
                         data: { dni: dni },
                         success: function(response) {
-                            cargarClientes();
+                            cargarUsuarios();
                         }
                     });
                 }
             });
         });
+
+        // Función para mostrar/ocultar sidebar
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('sidebar-collapsed');
+            document.querySelector('.content').classList.toggle('content-expanded');
+        }
     </script>
 </body>
 </html>
+
+
