@@ -1,13 +1,13 @@
 <?php
 
 $servidor = "localhost";
-$usuario = "Lihue";
-$contrasena = "lihue123";
+$usuario = "root";
+$contrasena = "";
 $basededatos = "login_register_db";
 
-$con = mysqli_connect($servidor, $usuario, $contrasena, $basededatos);
+$conexion = mysqli_connect("localhost", "root", "", "login_register_db");
 
-if (!$con) {
+if (!$conexion) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
 
@@ -16,14 +16,14 @@ if (isset($_POST["dni"])) {
 
     $query = "DELETE FROM clientes WHERE dni = '$dni'";
 
-    if (mysqli_query($con, $query)) {
+    if (mysqli_query($conexion, $query)) {
         echo "Cliente eliminado correctamente.";
     } else {
-        echo "Error al eliminar el cliente: " . mysqli_error($con);
+        echo "Error al eliminar el cliente: " . mysqli_error($conexion);
     }
 }
 
-mysqli_close($con);
+mysqli_close($conexion);
 
 ?>
 

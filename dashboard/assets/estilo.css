@@ -18,8 +18,8 @@
 
 /* Ajustes para el contenido */
 .content {
-    margin-left: 60px; /* Ajuste cuando la barra está colapsada */
-    width: calc(100% - 60px); /* Establece el ancho en relación con el ancho de la barra lateral */
+    margin-left: 30px; /* Ajuste cuando la barra está colapsada */
+    width: calc(100% - 30px); /* Establece el ancho en relación con el ancho de la barra lateral */
     transition: margin-left 0.3s ease;
     z-index: 1;
     padding-left: 10px; /* Añade algo de espacio para evitar que el contenido se superponga */
@@ -32,7 +32,7 @@
 
 /* Sidebar hover */
 .sidebar:hover {
-    width: 250px; /* Ancho cuando está expandido */
+    width: 245px; /* Ancho cuando está expandido */
 }
 
 /* Corrección para el margen en la barra lateral */
@@ -73,10 +73,6 @@ body {
     width: calc(100% - 250px); /* Ajuste del contenido */
 }
 
-.icusuario {
 
-    width: 10px;
-    height: 10px;
-}
 
 

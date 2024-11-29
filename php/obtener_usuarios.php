@@ -1,18 +1,18 @@
 <?php
 
 $servidor = "localhost";
-$usuario = "Lihue";
-$contrasena = "lihue123";
+$usuario = "root";
+$contrasena = "";
 $basededatos = "login_register_db";
 
-$con = mysqli_connect($servidor, $usuario, $contrasena, $basededatos);
+$conexion = mysqli_connect("localhost", "root", "", "login_register_db");
 
-if (!$con) {
+if (!$conexion) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
 
-$query = "SELECT dni, nombre, email FROM usuarios";
-$result = mysqli_query($con, $query);
+$query = "SELECT dni, nombre, correo FROM clientes";
+$result = mysqli_query($conexion, $query);
 
 $output = '';
 while ($row = mysqli_fetch_assoc($result)) {
@@ -20,14 +20,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     <tr>
         <td>' . $row['dni'] . '</td>
         <td>' . $row['nombre'] . '</td>
-        <td>' . $row['email'] . '</td>
+        <td>' . $row['correo'] . '</td>
         <td>
             <button class="btn btn-warning btnEditar" 
                     data-dni="' . $row['dni'] . '"
                     data-nombre="' . $row['nombre'] . '"
-                    data-email="' . $row['email'] . '"
-                    data-telefono="' . $row['telefono'] . '"
-                    data-domicilio="' . $row['domicilio'] . '">Editar</button>
+                    data-correo="' . $row['correo'] . '"">Editar</button>
             <button class="btn btn-danger btnEliminar" data-dni="' . $row['dni'] . '">Eliminar</button>
         </td>
     </tr>
@@ -36,5 +34,5 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 echo $output;
 
-mysqli_close($con);
+mysqli_close($conexion);
 ?>
