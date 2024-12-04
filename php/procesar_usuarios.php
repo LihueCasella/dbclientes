@@ -11,13 +11,14 @@ if (isset($_POST["agregar"])) {
   $nombre = $_POST["nombre"];
   $apellido = $_POST["apellido"];
   $dni = $_POST["dni"];
-  $email = $_POST["correo"];
+  $email = $_POST["email"];
   $telefono = $_POST["telefono"];
   $domicilio = $_POST["domicilio"];
+  
 
   //agregar la lógica para insertar estos datos en la base de datos o cualquier otra operación
 
-  $insertarDatos = "INSERT INTO clientes VALUES ('$nombre','$apellido','$dni','$email','$telefono','$domicilio')";
+  $insertarDatos = "INSERT INTO clientes (nombre, apellido, dni, correo, telefono, domicilio) VALUES ('$nombre', '$apellido', '$dni', '$email', '$telefono', '$domicilio')";
   $ejecutarInsertar = mysqli_query($conexion, $insertarDatos);
 
   if ($ejecutarInsertar) {
